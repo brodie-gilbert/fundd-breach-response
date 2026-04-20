@@ -346,7 +346,238 @@
     font-size: 13px;
     padding: 10px 18px;
   }
-  .btn-secondary:hover { border-color: var(--teal); color: var(--════════════════════════════════════ -->
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+  .btn-danger {
+    background: var(--red);
+    color: var(--white);
+  }
+  .btn-danger:hover { background: #c0223b; transform: translateY(-1px); }
+
+  .btn-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 14px;
+    color: var(--text);
+  }
+  .check-item:hover { border-color: var(--teal); background: var(--teal-light); }
+  .check-item.checked {
+    background: var(--teal-light);
+    border-color: var(--teal);
+    color: var(--muted);
+    text-decoration: line-through;
+  }
+  .checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    font-size: 12px;
+  }
+  .check-item.checked .checkbox {
+    background: var(--teal);
+    border-color: var(--teal);
+    color: var(--white);
+  }
+
+  /* ── ALERT BOX ── */
+  .alert {
+    display: flex;
+    gap: 12px;
+    padding: 16px 18px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .alert-red { background: #fde8eb; border-left: 4px solid var(--red); color: #8c1a2a; }
+  .alert-amber { background: #fef9e6; border-left: 4px solid var(--amber); color: #7a5a10; }
+  .alert-icon { font-size: 18px; flex-shrink: 0; }
+
+  /* ── WELCOME / HERO ── */
+  .hero-icon {
+    font-size: 52px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 24px 0;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  /* ── ACCORDION ── */
+  .accordion { margin-bottom: 28px; }
+  .acc-item {
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .acc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    background: var(--white);
+    transition: background 0.15s;
+  }
+  .acc-header:hover { background: var(--teal-light); }
+  .acc-header.open { background: var(--teal-light); color: var(--teal-dark); }
+  .acc-arrow { font-size: 12px; transition: transform 0.2s; }
+  .acc-header.open .acc-arrow { transform: rotate(180deg); }
+  .acc-body {
+    display: none;
+    padding: 6px 18px 16px;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+  }
+  .acc-body.open { display: block; }
+  .acc-body ul { margin: 8px 0 0 16px; }
+  .acc-body li { margin-bottom: 5px; }
+
+  /* ── CHIP TAGS ── */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .chip {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 100px;
+    background: #f0f4f5;
+    color: var(--muted);
+  }
+
+  /* ── HIDDEN ── */
+  .hidden { display: none !important; }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .card { padding: 36px 24px; }
+    .question { font-size: 22px; }
+    .contact-row { flex-direction: column; align-items: flex-start; gap: 2px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo-text">F<span>undd</span></div>
+  <div class="header-badge">Security Incident Response</div>
+</header>
+
+<!-- PROGRESS -->
+<div class="progress-bar">
+  <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- STAGE -->
+<div class="stage">
+  <div class="card" id="card">
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- SCREEN 0: WELCOME                          -->
+    <!-- ══════════════════════════════════════════ -->
+    <div id="screen-0">
+      <span class="hero-icon">🚨</span>
+      <div class="question">Do you think you've encountered a security breach?</div>
+      <div class="sub">This guided tool will help you respond quickly and correctly. Answer a few short questions and we'll walk you through exactly what to do — step by step.</div>
+      <div class="alert alert-amber">
+        <span class="alert-icon">⚡</span>
+        <div><strong>Act fast.</strong> The first few minutes of a breach are critical. Don't wait to be certain — if something looks wrong, start here.</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="go(1)">Let's start →</button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- SCREEN 1: WHAT ARE YOU SEEING?             -->
+    <!-- ══════════════════════════════════════════ -->
+    <div id="screen-1" class="hidden">
+      <div class="step-label">Step 1 of 3</div>
+      <div class="question">What are you seeing right now?</div>
+      <div class="sub">Pick the option that best describes the situation.</div>
+      <div class="options">
+        <button class="option" onclick="selectAndGo('type','ransomware',2)">
+          <span class="option-key">A</span>
+          <span class="option-emoji">🔒</span>
+          <span>Files are encrypted or systems are locked out (ransomware)</span>
+        </button>
+        <button class="option" onclick="selectAndGo('type','exfil',2)">
+          <span class="option-key">B</span>
+          <span class="option-emoji">📤</span>
+          <span>Confirmed or suspected data theft / data exfiltration</span>
+        </button>
+        <button class="option" onclick="selectAndGo('type','creds',2)">
+          <span class="option-key">C</span>
+          <span class="option-emoji">🔑</span>
+          <span>Admin or user account has been compromised</span>
+        </button>
+        <button class="option" onclick="selectAndGo('type','phishing',2)">
+          <span class="option-key">D</span>
+          <span class="option-emoji">🎣</span>
+          <span>Phishing email received / suspicious link clicked</span>
+        </button>
+        <button class="option" onclick="selectAndGo('type','malware',2)">
+          <span class="option-key">E</span>
+          <span class="option-emoji">🦠</span>
+          <span>Malware or virus detected on a device</span>
+        </button>
+        <button class="option" onclick="selectAndGo('type','other',2)">
+          <span class="option-key">F</span>
+          <span class="option-emoji">🤔</span>
+          <span>Something else / not sure what it is</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- SCREEN 2: SCOPE                            -->
+    <!-- ══════════════════════════════════════════ -->
     <div id="screen-2" class="hidden">
       <div class="step-label">Step 2 of 3</div>
       <div class="question">How many systems or people are affected?</div>
@@ -651,199 +882,6 @@ const SEV_DATA = {
           'Remove malware, backdoors, or attacker footholds from all systems',
           'Rebuild or restore affected systems from known-clean backups',
           'Re-credential all affected accounts with new strong passwords + MFA',
-          'Verify integrity of restored systems before returning to production',
-          'Monitor systems closely for 72 hours post-recovery for re-infection',
-        ]
-      },
-      {
-        title: 'Step 7 — Post-Incident Review',
-        actions: [
-          'Conduct a formal post-incident review within 5 business days',
-          'Produce a written incident report: timeline, root cause, impact, actions taken',
-          'Identify and implement corrective actions to prevent recurrence',
-          'Update this runbook and the IT Security Policy as needed',
-          'Report findings to the Board within 10 business days',
-        ]
-      }
-    ]
-  },
-  2: {
-    label: 'SEV-2 — High Severity',
-    cls: 'sev2',
-    icon: '🟠',
-    sla: '1 hour response',
-    title: 'This is a High-Severity Incident (SEV-2)',
-    desc: 'Significant incident with potential for serious harm. Immediate action is required — notify the IT Security Lead right away.',
-    alertHtml: `<div class="alert alert-amber"><span class="alert-icon">⚠️</span><div><strong>Respond within 1 hour.</strong> Notify the IT Security Lead immediately and begin containment.</div></div>`,
-    checklistItems: [
-      'Notify IT Security Lead immediately (security@fundd.com.au)',
-      'Open an incident thread in the #security-incidents Slack channel',
-      'Log time of detection, reporter name, and initial details',
-      'Do not attempt to remediate on your own — wait for the IT Security team',
-      'Preserve all logs and evidence before taking further action',
-    ],
-    steps: [
-      {
-        title: 'Step 1 — Detect & Triage (0–15 min)',
-        actions: [
-          'Confirm the incident and classify as SEV-2',
-          'Notify IT Security Lead immediately',
-          'Open incident thread in #security-incidents Slack channel',
-          'Log time of detection, reporter, and initial details',
-        ]
-      },
-      {
-        title: 'Step 2 — Assemble Response Team',
-        actions: [
-          'IT Security Lead takes ownership as Incident Manager',
-          'Notify: CISO, affected business unit head, Legal/Compliance',
-          'Assign a Scribe for documentation',
-        ]
-      },
-      {
-        title: 'Step 3 — Contain',
-        actions: [
-          'Isolate affected endpoints or accounts as appropriate',
-          'Reset compromised credentials; enforce MFA re-registration',
-          'Block identified malicious activity at network/email gateway level',
-          'Preserve logs and evidence before any remediation actions',
-        ]
-      },
-      {
-        title: 'Step 4 — Assess Impact',
-        actions: [
-          'Determine scope of data or systems affected',
-          'Assess whether client data or regulated data is involved',
-          'Document all notifications with timestamps',
-        ]
-      },
-      {
-        title: 'Step 5 — Notify',
-        actions: [
-          'CISO within 30 minutes of triage',
-          'If client/regulated data involved: engage Privacy Officer and Legal',
-          'NDB Scheme: assess OAIC notification obligation if personal data breached',
-        ]
-      },
-      {
-        title: 'Step 6 — Eradicate & Recover',
-        actions: [
-          'Remove threat from affected systems',
-          'Patch exploited vulnerabilities',
-          'Restore from clean backups if necessary',
-          'Monitor affected systems for 48 hours post-recovery',
-        ]
-      },
-      {
-        title: 'Step 7 — Post-Incident Review',
-        actions: [
-          'Conduct review within 5 business days',
-          'Document root cause, timeline, and corrective actions',
-          'Update security controls and policies as needed',
-        ]
-      }
-    ]
-  },
-  3: {
-    label: 'SEV-3 — Medium Severity',
-    cls: 'sev3',
-    icon: '🟡',
-    sla: '4 hour response',
-    title: 'This is a Medium-Severity Incident (SEV-3)',
-    desc: 'Security incident with limited immediate impact but requiring prompt investigation. Report to the IT Security Lead and begin logging.',
-    alertHtml: '',
-    checklistItems: [
-      'Report to IT Security Lead within 4 hours (security@fundd.com.au)',
-      'Open an incident thread in #security-incidents Slack channel',
-      'Log all relevant details: what happened, when, who is affected',
-      'Do not share details with anyone outside the security team',
-      'Preserve any suspicious emails, screenshots, or logs',
-    ],
-    steps: [
-      {
-        title: 'Step 1 — Report & Triage',
-        actions: [
-          'Report to IT Security Lead within 4 hours',
-          'Classify as SEV-3 and open incident thread',
-          'Log time of detection and initial details',
-        ]
-      },
-      {
-        title: 'Step 2 — Investigate',
-        actions: [
-          'IT Security Lead investigates and scopes the incident',
-          'Determine if scope escalates to SEV-2',
-          'Collect and preserve relevant logs and evidence',
-        ]
-      },
-      {
-        title: 'Step 3 — Contain & Remediate',
-        actions: [
-          'Apply targeted containment (e.g., block sender, quarantine file, reset password)',
-          'Patch or mitigate any exploited vulnerability',
-          'Confirm the threat is fully removed',
-        ]
-      },
-      {
-        title: 'Step 4 — Review',
-        actions: [
-          'Document incident details and actions taken',
-          'Update controls or training if a systemic issue is identified',
-          'Brief CISO if the incident reveals a policy gap',
-        ]
-      }
-    ]
-  },
-  4: {
-    label: 'SEV-4 — Low / Informational',
-    cls: 'sev4',
-    icon: '🟢',
-    sla: 'Next business day',
-    title: 'This looks like a Low-Severity Incident (SEV-4)',
-    desc: 'A low-impact security event with no immediate threat. Still needs to be logged and handled — just not as urgently.',
-    alertHtml: '',
-    checklistItems: [
-      'Log the incident in the security incident register',
-      'Report to IT Security Lead by next business day',
-      'Do not click suspicious links or open attachments',
-      'Forward suspicious emails to security@fundd.com.au and delete',
-      'If unsure, escalate — it\'s always better to over-report',
-    ],
-    steps: [
-      {
-        title: 'Step 1 — Log & Report',
-        actions: [
-          'Log the event in the security incident register',
-          'Report to IT Security Lead by next business day',
-          'Include: what happened, when, what device/account was involved',
-        ]
-      },
-      {
-        title: 'Step 2 — Handle',
-        actions: [
-          'Follow specific guidance from IT Security team',
-          'Common actions: delete phishing email, run antivirus scan, change password',
-          'Confirm with IT Security that no further action is needed',
-        ]
-      }
-    ]
-  }
-};
-
-// ── NAVIGATION ─────────────────────────────────────────
-function go(screenNum) {
-  const oldCard = document.getElementById('card');
-  oldCard.classList.add('exit');
-
-  setTimeout(() => {
-    oldCard.classList.remove('exit');
-    document.querySelectorAll('[id^="screen-"]').forEach(s => s.classList.add('hidden'));
-    const next = document.getElementById('screen-' + screenNum);
-    if (next) next.classList.remove('hidden');
-
-    if (screenNum === 4) buildSeverityScreen();
-    if (screenNum === 5) buildActionScreen();
-    i new strong passwords + MFA',
           'Verify integrity of restored systems before returning to production',
           'Monitor systems closely for 72 hours post-recovery for re-infection',
         ]
